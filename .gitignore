@@ -1,0 +1,18 @@
+# Visual Studio
+.vs/
+
+# Betriebssystem
+Thumbs.db
+.DS_Store
+
+# Home Assistant - sensible Daten
+secrets.yaml
+.env
+
+# Zugangsdaten / Schlüssel
+*.key
+*.token
+
+# Temporäre Dateien
+*.tmp
+*.log
