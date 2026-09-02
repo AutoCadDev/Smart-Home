@@ -10,7 +10,7 @@ Schwerpunkte:
 - helligkeitsabhängige Automationen
 - Raumklima und Präsenz
 - Multimedia
-- Fensterüberwachung
+- Fenster- und Balkontürüberwachung
 - spätere Heizungs- und Rollladensteuerung
 - Bedienung per App, Sprache und Tablet
 
@@ -51,7 +51,7 @@ Diese wird zu einer festen Uhrzeit:
 
 ### Ziel
 
-Die Szene soll zukünftig zusätzlich von der tatsächlichen Raumhelligkeit abhängen.
+Die Beleuchtung soll zukünftig zusätzlich von der tatsächlichen Raumhelligkeit, Tageszeit und Nutzung des Wohnzimmers abhängen.
 
 ```text
 Bewohner zuhause
@@ -91,6 +91,7 @@ Manuell steuerbar bleiben sollen:
 - Farben
 - Hue-Szenen
 - einzelne Lampen
+- Multimedia-Szenen
 
 Eine manuell gewählte Lichtstimmung soll nicht unmittelbar von einer Automation überschrieben werden.
 
@@ -108,12 +109,20 @@ Vorhandene Geräte:
 
 Die Geräte sollen später auf ihre Integrationsmöglichkeiten mit Home Assistant geprüft werden.
 
-### Fernsehen
+Ziel ist, Multimedia und Beleuchtung sinnvoll miteinander zu verknüpfen.
+
+---
+
+## Fernsehen
+
+Beim Einschalten des Fernsehers soll optional eine passende TV-Szene aktiviert werden.
 
 Mögliche spätere Automation:
 
 ```text
 TV eingeschaltet
+        +
+Raumhelligkeit niedrig
         │
         ▼
 TV-Szene aktivieren
@@ -121,15 +130,24 @@ TV-Szene aktivieren
         ├── Hue Play einschalten
         ├── Lightstrip TV einschalten
         ├── Lightstrip Lowboard anpassen
-        └── restliches Licht reduzieren
+        ├── restliches Licht reduzieren
+        └── Decken-/Hauptbeleuchtung vermeiden
 ```
 
-### Gaming
+Wird der Fernseher ausgeschaltet, soll die vorherige oder eine passende normale Wohnzimmerbeleuchtung wiederhergestellt werden können.
+
+---
+
+## Gaming
+
+Beim Starten der PlayStation soll optional eine eigene Gaming-Szene aktiviert werden.
 
 Mögliche spätere Automation:
 
 ```text
 PlayStation aktiv
+        +
+Raumhelligkeit niedrig
         │
         ▼
 Gaming-Szene aktivieren
@@ -139,6 +157,23 @@ Gaming-Szene aktivieren
         ├── Lightstrip Lowboard
         └── Gaming-Farbschema
 ```
+
+Die Gaming-Szene soll unabhängig von der normalen Abendbeleuchtung steuerbar bleiben.
+
+---
+
+## Heimkino
+
+Das vorhandene Heimkino soll später ebenfalls auf Integrationsmöglichkeiten geprüft werden.
+
+Mögliche Nutzung:
+
+- automatisches Einschalten zusammen mit dem TV
+- Lautstärke- oder Eingangssteuerung
+- Statusanzeige im Dashboard
+- Kombination mit TV- und Gaming-Szenen
+
+Die konkrete Umsetzung hängt von den verfügbaren Schnittstellen des Heimkinosystems ab.
 
 ---
 
@@ -158,34 +193,41 @@ Im Wohnzimmer sollen folgende Werte und Zustände erfasst werden:
 
 Wenn möglich, sollen mehrere Messwerte durch geeignete Kombisensoren abgedeckt werden.
 
-### Präsenz
+---
+
+## Präsenz
 
 Eine echte Präsenzmessung ist gegenüber einem reinen Bewegungsmelder bevorzugt.
 
 Das ist besonders wichtig bei:
 
 - Fernsehen
-- Spielen
+- Gaming
 - Lesen
 - Sitzen auf dem Sofa
+- längeren ruhigen Aufenthalten
 
-Das System soll also erkennen können, dass noch jemand im Wohnzimmer ist, auch wenn sich die Person nur wenig bewegt.
+Das System soll erkennen können, dass sich weiterhin Personen im Wohnzimmer befinden, auch wenn nur wenig Bewegung stattfindet.
+
+Zusätzlich können später weitere Zustände als Hinweis auf eine aktive Nutzung des Wohnzimmers dienen.
+
+Beispiele:
+
+- TV eingeschaltet
+- PlayStation aktiv
+- Heimkino aktiv
+
+Dadurch soll verhindert werden, dass Beleuchtung oder andere Automationen während der Nutzung unbeabsichtigt deaktiviert werden.
 
 ---
 
 ## Fenster und Balkontür
 
-### Aktuell
+### Fenster
 
-- 1 Fenster
-- manuelle Beschattung
+Aktuell ist ein Fenster vorhanden.
 
-### Später
-
-- große Balkontür
-- elektrische Beschattung
-
-Für Fenster und Balkontür sind Kontaktsensoren vorgesehen.
+Für das Fenster ist ein Kontaktsensor vorgesehen.
 
 Mögliche Nutzung:
 
@@ -204,6 +246,20 @@ Fenster geöffnet
 Heizung Wohnzimmer pausieren
 ```
 
+### Balkontür
+
+Zusätzlich soll später die große Balkontür überwacht werden.
+
+Für die Balkontür ist ebenfalls ein Kontaktsensor vorgesehen.
+
+Mögliche Nutzung:
+
+- Balkontürstatus im Dashboard
+- Heizungssteuerung
+- Sicherheitsprüfung
+- Abwesenheitsprüfung
+- Gute-Nacht-Prüfung
+
 ---
 
 ## Heizung und Beschattung
@@ -220,6 +276,7 @@ Zu klären:
 - gewünschte Temperatursteuerung
 - Nachtabsenkung
 - Abwesenheitsabsenkung
+- Verhalten bei geöffnetem Fenster oder geöffneter Balkontür
 
 ### Rollläden / Beschattung
 
@@ -233,6 +290,7 @@ Mögliche spätere Automationen:
 - Beschattung abhängig von Raumtemperatur
 - automatisches Öffnen am Morgen
 - automatisches Schließen am Abend
+- TV-Modus mit angepasster Beschattung
 - Urlaubsmodus
 - Abwesenheitsmodus
 
@@ -256,9 +314,12 @@ Anzeigen:
 - Helligkeit
 - Präsenz
 - Fensterstatus
+- Balkontürstatus
 - Lichtstatus
 - Hue-Szenen
-- Multimedia
+- TV-Status
+- PlayStation-Status
+- Heimkino-Status
 - später Rollläden und Heizung
 
 Steuerung:
@@ -267,7 +328,9 @@ Steuerung:
 - Farben
 - Helligkeit
 - Szenen
-- Multimedia-Szenen
+- TV-Szene
+- Gaming-Szene
+- Multimedia
 - später Heizung
 - später Beschattung
 
@@ -282,30 +345,86 @@ Zusätzlich sollen zentrale Funktionen per Sprache steuerbar sein.
 ```text
 Bewohner zuhause
 +
-passender Tageszeitraum
+Abendzeit
 +
 Helligkeit unter Grenzwert
++
+keine spezielle Multimedia-Szene aktiv
 → Wohnzimmer-Szene aktivieren
 ```
+
+---
+
+### TV-Szene
+
+```text
+TV eingeschaltet
++
+Helligkeit unter Grenzwert
+→ TV-Szene aktivieren
+```
+
+---
+
+### Gaming-Szene
+
+```text
+PlayStation aktiv
++
+Helligkeit unter Grenzwert
+→ Gaming-Szene aktivieren
+```
+
+---
+
+### Multimedia beendet
+
+```text
+TV / PlayStation ausgeschaltet
++
+Bewohner weiterhin im Wohnzimmer
+        │
+        ▼
+passende normale Wohnzimmer-Szene aktivieren
+```
+
+---
 
 ### Abwesenheit
 
 ```text
 Niemand zuhause
-→ Licht aus
-→ später Heizung reduzieren
-→ später Sicherheitsmodus aktivieren
+        │
+        ├── Wohnzimmerbeleuchtung aus
+        ├── Multimedia prüfen / ausschalten
+        ├── später Heizung reduzieren
+        └── später Sicherheitsmodus aktivieren
 ```
+
+---
+
+### Fenster oder Balkontür geöffnet
+
+```text
+Fenster oder Balkontür geöffnet
+→ später Heizung Wohnzimmer pausieren
+```
+
+---
 
 ### Gute Nacht
 
 ```text
 Gute Nacht
-→ Wohnzimmerbeleuchtung aus
-→ Multimedia prüfen
-→ Fensterstatus prüfen
-→ später Rollläden schließen
-→ später Heizung auf Nachtbetrieb
+        │
+        ├── Wohnzimmerbeleuchtung aus
+        ├── TV-Status prüfen
+        ├── PlayStation-Status prüfen
+        ├── Heimkino-Status prüfen
+        ├── Fensterstatus prüfen
+        ├── Balkontürstatus prüfen
+        ├── später Rollläden schließen
+        └── später Heizung auf Nachtbetrieb
 ```
 
 ---
@@ -329,7 +448,9 @@ Gute Nacht
 - [ ] Sprachsteuerung
 - [ ] TV-Szene
 - [ ] Gaming-Szene
+- [ ] Multimedia-Status erfassen
 - [ ] Anwesenheitslogik
+- [ ] Rückkehr zur normalen Wohnzimmer-Szene nach Multimedia-Nutzung
 
 ### Phase 3 – Erweiterung
 
@@ -337,7 +458,9 @@ Gute Nacht
 - [ ] elektrische Rollläden
 - [ ] Balkontürsensor
 - [ ] automatische Beschattung
+- [ ] Heimkino vollständig integrieren
 - [ ] erweiterte Multimedia-Automationen
+- [ ] TV-abhängige Beschattung
 
 ---
 
@@ -349,7 +472,7 @@ Gute Nacht
 - [ ] Präsenzsensor auswählen
 - [ ] Temperatur-/Luftfeuchtigkeitssensor auswählen
 - [ ] Fenstersensor auswählen
-- [ ] Balkontür berücksichtigen
+- [ ] Balkontürsensor auswählen
 - [ ] elektrische Rollladenlösung auswählen
 - [ ] Sprachsteuerung festlegen
 - [ ] TV-Integration prüfen
@@ -357,3 +480,5 @@ Gute Nacht
 - [ ] PlayStation-Integration prüfen
 - [ ] Lux-Grenzwert bestimmen
 - [ ] Verhalten bei manueller Lichtsteuerung definieren
+- [ ] Verhalten beim Beenden einer Multimedia-Szene definieren
+- [ ] Wohnzimmer-Logik im realen Betrieb testen

@@ -9,6 +9,7 @@ Schwerpunkte:
 - intelligente Philips-Hue-Beleuchtung
 - helligkeitsabhängige Automationen
 - Präsenz- und Bewegungserkennung
+- separate Arbeits- und Ambientebeleuchtung
 - Raumklima
 - Fensterüberwachung
 - Wasserschutz
@@ -47,7 +48,7 @@ Diese werden zu festen Uhrzeiten:
 
 ### Ziel
 
-Die Beleuchtung soll zukünftig zusätzlich von der tatsächlichen Raumhelligkeit abhängen.
+Die Beleuchtung soll zukünftig zusätzlich von der tatsächlichen Raumhelligkeit, Tageszeit und Nutzung der Küche abhängen.
 
 ```text
 Bewohner zuhause
@@ -57,7 +58,7 @@ passender Tageszeitraum
 Raumhelligkeit unter Grenzwert
         │
         ▼
-Küchen-Szene aktivieren
+passende Küchen-Szene aktivieren
 ```
 
 Dadurch kann die Beleuchtung beispielsweise an einem dunklen Regentag früher eingeschaltet werden als an einem hellen Sommertag.
@@ -77,12 +78,12 @@ Ziel ist eine eigene Logik für das Arbeitslicht.
 Mögliche Automation:
 
 ```text
-Präsenz in der Küche
+Küche in Benutzung
         +
 Raumhelligkeit niedrig
         │
         ▼
-Grundbeleuchtung aktivieren
+Arbeitslicht aktivieren
 ```
 
 Optional zusätzlich:
@@ -96,7 +97,28 @@ Lightstrip Küchenzeile heller
         └── übrige Ambientebeleuchtung bleibt unabhängig
 ```
 
-Dadurch kann beim Kochen gezielt eine höhere Helligkeit an der Arbeitsfläche genutzt werden, ohne die komplette Küchenbeleuchtung verändern zu müssen.
+Dadurch kann beim Kochen oder Vorbereiten von Speisen gezielt eine höhere Helligkeit an der Arbeitsfläche genutzt werden, ohne die komplette Küchenbeleuchtung verändern zu müssen.
+
+---
+
+## Ambientebeleuchtung
+
+Die Spots und die Lampe am Esstisch sollen unabhängig vom Arbeitslicht für eine angenehmere Grund- und Stimmungsbeleuchtung genutzt werden können.
+
+Mögliche Automation:
+
+```text
+Bewohner zuhause
+        +
+Abendzeit
+        +
+Raumhelligkeit niedrig
+        │
+        ▼
+Ambientebeleuchtung aktivieren
+```
+
+Arbeitslicht und Ambientebeleuchtung sollen dabei getrennt voneinander steuerbar bleiben.
 
 ---
 
@@ -120,6 +142,7 @@ Manuell steuerbar bleiben sollen:
 - Hue-Szenen
 - einzelne Lampen
 - Arbeitslicht
+- Ambientebeleuchtung
 
 Eine manuell gewählte Lichtstimmung soll nicht unmittelbar von einer Automation überschrieben werden.
 
@@ -158,6 +181,8 @@ Das ist besonders wichtig bei:
 - längerem Aufenthalt ohne große Bewegung
 
 Da sich der Esstisch in der Nähe der Küche befindet, soll das System möglichst erkennen können, dass sich weiterhin Personen im Küchen-/Essbereich aufhalten, auch wenn diese sich nur wenig bewegen.
+
+Dadurch soll verhindert werden, dass Beleuchtung oder andere Automationen während des Aufenthalts unbeabsichtigt deaktiviert werden.
 
 ---
 
@@ -202,7 +227,11 @@ Mögliche Positionen:
 - unter der Spüle
 - im Bereich der Spülmaschine
 
-Ziel:
+Falls nur ein Sensor eingesetzt wird, muss später anhand der Küchenaufteilung entschieden werden, welche Position das höhere Risiko abdeckt.
+
+Langfristig können auch mehrere Sensoren eingesetzt werden.
+
+### Grundlogik
 
 ```text
 Wasser erkannt
@@ -212,10 +241,13 @@ Home Assistant
         │
         ├── sofortige Benachrichtigung
         ├── Warnung auf dem Tablet
-        └── optional spätere weitere Sicherheitsaktion
+        ├── akustische Warnung optional
+        └── spätere Sicherheitsaktion optional
 ```
 
-Die konkrete Position und Hardware werden später festgelegt.
+Eine spätere Erweiterung könnte beispielsweise eine automatisch steuerbare Wasserabsperrung sein.
+
+Diese ist zunächst nicht Teil der Grundinstallation.
 
 ---
 
@@ -233,6 +265,7 @@ Zu klären:
 - gewünschte Temperatursteuerung
 - Nachtabsenkung
 - Abwesenheitsabsenkung
+- Verhalten bei geöffnetem Fenster
 
 ### Rollläden / Beschattung
 
@@ -281,6 +314,7 @@ Steuerung:
 - Helligkeit
 - Szenen
 - Arbeitslicht
+- Ambientebeleuchtung
 - später Heizung
 - später Beschattung
 
@@ -295,11 +329,13 @@ Zusätzlich sollen zentrale Funktionen per Sprache steuerbar sein.
 ```text
 Bewohner zuhause
 +
-passender Tageszeitraum
+Abendzeit
 +
 Helligkeit unter Grenzwert
-→ Küchen-Szene aktivieren
+→ Küchen-Ambienteszene aktivieren
 ```
+
+---
 
 ### Arbeitslicht
 
@@ -310,6 +346,8 @@ Helligkeit zu niedrig
 → Arbeitslicht aktivieren
 ```
 
+---
+
 ### Abwesenheit
 
 ```text
@@ -319,6 +357,8 @@ Niemand zuhause
 → später Sicherheitsmodus aktivieren
 ```
 
+---
+
 ### Fenster geöffnet
 
 ```text
@@ -326,23 +366,31 @@ Fenster geöffnet
 → später Heizung Küche pausieren
 ```
 
+---
+
 ### Wasser erkannt
 
 ```text
 Wasserleck erkannt
 → sofortige Benachrichtigung
 → Warnung auf Tablet
+→ optional akustische Warnung
+→ später weitere Sicherheitsaktion
 ```
+
+---
 
 ### Gute Nacht
 
 ```text
 Gute Nacht
-→ Küchenbeleuchtung aus
-→ Fensterstatus prüfen
-→ Wassersensor prüfen
-→ später Rollläden schließen
-→ später Heizung auf Nachtbetrieb
+        │
+        ├── Küchenbeleuchtung aus
+        ├── Arbeitslicht aus
+        ├── Fensterstatus prüfen
+        ├── bei erkanntem Wasserleck warnen
+        ├── später Rollläden schließen
+        └── später Heizung auf Nachtbetrieb
 ```
 
 ---
@@ -364,9 +412,10 @@ Gute Nacht
 
 - [ ] helligkeitsabhängige Lichtautomation
 - [ ] separate Arbeitslicht-Automation
+- [ ] Ambientebeleuchtung einrichten
 - [ ] Tablet-Steuerung
 - [ ] Sprachsteuerung
-- [ ] Küchen-Szene
+- [ ] Küchen-Szenen
 - [ ] Anwesenheitslogik
 
 ### Phase 3 – Erweiterung
@@ -374,6 +423,8 @@ Gute Nacht
 - [ ] Heizungsautomation
 - [ ] elektrische Rollläden
 - [ ] automatische Beschattung
+- [ ] mehrere Wassersensoren bei Bedarf
+- [ ] automatische Wasserabsperrung prüfen
 - [ ] erweiterte Sicherheitsfunktionen
 
 ---
@@ -388,8 +439,10 @@ Gute Nacht
 - [ ] Fenstersensor auswählen
 - [ ] Wassersensor auswählen
 - [ ] Position des Wassersensors festlegen
+- [ ] prüfen, ob ein oder mehrere Wassersensoren sinnvoll sind
 - [ ] elektrische Rollladenlösung auswählen
 - [ ] Sprachsteuerung festlegen
 - [ ] Lux-Grenzwert bestimmen
 - [ ] Verhalten bei manueller Lichtsteuerung definieren
 - [ ] Arbeitslicht-Logik im realen Betrieb testen
+- [ ] Ambientebeleuchtung im realen Betrieb testen
