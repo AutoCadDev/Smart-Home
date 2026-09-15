@@ -14,9 +14,11 @@ Diese Datei enthält die zentrale Hardware- und Einkaufsliste für das Smart-Hom
 ## 1. Zentrale & Bridges
 
 | Komponente | Anzahl | Hersteller / Modell | Aufgabe | Status | Preis |
-|---|---:|---|---|---|---:|
-| Smart-Home-Zentrale / Display | 1 | Amazon Echo Hub | Zentrale Bedienung und Alexa-Integration | 🟡 In Prüfung | – |
-| Lichtsteuerung | 1 | Philips Hue Bridge Pro | Zentrale für Hue-Beleuchtung und Hue-Zubehör | 🟡 In Prüfung | – |
+|---|---:|---|---|---|---|
+| Smart-Home-Zentrale / Display | 1 | Amazon Echo Hub | Zentrale Bedienung und Alexa-Integration | 🟢 Ausgewählt | 199,99 € bei Amazon / alternative Angebote vor Kauf nochmal prüfen |
+| Lichtsteuerung | 1 | Philips Hue Bridge Pro | Zentrale für Hue-Beleuchtung und Hue-Zubehör | 🟢 Ausgewählt | 72,99 € einzeln bei Amazon / Starterset prüfen |
+| Wandhalterung | 1 | Echo Hub Original | Wandmontage des Echo Hub | 🔵 Bereits vorhanden / Lieferumfang | 0 € |
+| Stromversorgung | 1 | Echo Hub Original-Netzteil | Stromversorgung über Steckdose | 🔵 Bereits vorhanden / Lieferumfang | 0 € |
 
 ---
 
@@ -46,7 +48,7 @@ Noch nicht geplant.
 
 ## 8. Netzwerk & Sonstiges
 
-Noch nicht geplant.
+| PoE-Stromversorgung Echo Hub | 0 | Noch offen | Alternative zur Stromversorgung über Steckdose | ⚪ Später geplant | – |
 
 ---
 
