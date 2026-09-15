@@ -10,7 +10,7 @@ Die Bedienung erfolgt über Smartphones sowie über ein zentrales Tablet-Dashboa
 
 ## Projektziele
 
-- Zentrale Steuerung über Home Assistant
+- Zentrale Steuerung über Echo Smart Hub
 - Einfache Bedienung für die ganze Familie
 - Integration von iPhones
 - Zentrales Smart-Home-Tablet
@@ -38,7 +38,7 @@ Die Bedienung erfolgt über Smartphones sowie über ein zentrales Tablet-Dashboa
 
 ## Technologien
 
-- Home Assistant
+- Echo Smart Hub
 - Git
 - GitHub
 - Zigbee
