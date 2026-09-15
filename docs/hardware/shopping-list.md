@@ -24,7 +24,13 @@ Diese Datei enthält die zentrale Hardware- und Einkaufsliste für das Smart-Hom
 
 ## 2. Sensoren
 
-Noch nicht geplant.
+| Komponente | Anzahl | Hersteller / Modell | Aufgabe | Status | Richtpreis |
+|---|---:|---|---|---|---:|
+| Präsenz-/Raumklimasensor | offen | Aqara FP300 | Präsenz, Bewegung, Temperatur, Luftfeuchtigkeit | 🟢 Ausgewählt | ca. 49,99 € |
+| Zonen-Präsenzsensor | offen | Aqara FP2 | Zonenerkennung im offenen Wohn-/Ess-/Kochbereich | 🟡 In Prüfung | ca. 82,99 € |
+| Fenster-/Türkontakt | offen | Aqara Door and Window Sensor P2 | Fensterstatus, spätere Heizungsautomation | 🟢 Ausgewählt | ca. 32,99 € |
+| Bewegungs-/Helligkeitssensor | offen | Philips Hue Motion Sensor | Lichtsteuerung abhängig von Bewegung und Helligkeit | 🟡 In Prüfung | Preis später prüfen |
+| Virtuelle Bewegungserkennung | offen | Philips Hue MotionAware | Bewegungserkennung über vorhandene Hue-Leuchten | 🟡 In Prüfung | 0 € zusätzliche Sensorhardware |
 
 ## 3. Beleuchtung
 
