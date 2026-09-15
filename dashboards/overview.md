@@ -52,7 +52,7 @@ Das Dashboard soll modular aufgebaut sein, damit später weitere Funktionen wie 
 ## Wireframe
 
 +---------------------------------------------------------------------------------------+
-|   UHR        |       BEGRÜSSUNG + DATUM                   |       WETTER              |
+|   UHR        |       BEGRÜSSUNG + DATUM                   |     ☀️  WETTER            |
 +---------------------------------------------------------------------------------------+
 |                                              |                                        |
 |                                              |                                        |
@@ -68,6 +68,6 @@ Das Dashboard soll modular aufgebaut sein, damit später weitere Funktionen wie 
 |                                              |                                        |
 +---------------------------------------------------------------------------------------+
 |                                                                                       |
-|   [ 🏠 COMING HOME ]       [ 🚪 LEAVING HOME ]       [ ⚙ EINSTELLUNGEN ]             |
+|   [ 🏠 COMING HOME ]       [ 🚪 LEAVING HOME ]       [ ⚙ EINSTELLUNGEN ]            |
 |                                                                                       |
 +---------------------------------------------------------------------------------------+
