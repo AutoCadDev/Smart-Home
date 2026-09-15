@@ -34,7 +34,9 @@ Diese Datei enthält die zentrale Hardware- und Einkaufsliste für das Smart-Hom
 
 ## 3. Beleuchtung
 
-Noch nicht geplant.
+| Bereich | Komponente | Anzahl | Hersteller / Modell | Status | Preis |
+|---|---|---:|---|---|---:|
+| Wohnzimmer | Hue Color Spot / Wandspot | 1 | Philips Hue White & Color Ambiance | 🟢 Kaufen | Preis prüfen |
 
 ## 4. Schalter & Bedienung
 
